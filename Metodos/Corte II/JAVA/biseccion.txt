@@ -1,0 +1,55 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package biseccion;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author Angie Mendez
+ */
+public class Biseccion {
+
+    public static double fuction(double x) {
+        return  Math.sin(x) + 0.2; 
+    }
+public static void main(String[] args) {
+        Scanner datos = new Scanner(System.in);
+        System.out.println("ingrese el valor a");
+        System.out.println("ingrese el valor b");
+        System.out.println("Ingrese el valor de epsilon");
+        System.out.printf("\n \tEl valor de x es: %.5f \n",bisection(datos.nextDouble(), datos.nextDouble(), datos.nextDouble()));
+
+    }
+    
+public static double bisection(double a, double b, double e){
+    double c; //valor del medio 
+    double d=0; //variable auxiliar
+    int i =0; //contador
+    if(fuction(a)*fuction(b)<0){
+    while(true){
+        c = (a+b)/2;
+        if(Math.abs(fuction(c)) <= Math.pow(10, -e) || Math.abs(c-d)<= Math.pow(10, -e)){
+            return c;
+        }
+        if(fuction(a)*fuction(c) < 0){
+            b=c;
+        }else{
+            a=c;
+        }
+        d =c;
+        System.out.printf("\n  \t  %.5f  \t  %.5f  \t  %.5f ",a, b, c);
+            System.out.printf("\t %.5f",fuction(d));
+            System.out.print(" \t "+ i++);
+    }
+    }
+    else{
+        return 0; //si no se cumple la condicion inicial
+    }
+}
+
+    
+}
